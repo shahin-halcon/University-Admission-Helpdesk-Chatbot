@@ -1,0 +1,92 @@
+{
+  "intents": [
+    {
+      "tag": "courses_provided",
+      "patterns": [
+        "What courses do you offer?",
+        "Which engineering branches are available?",
+        "List of courses",
+        "What can I study there?",
+        "Departments in the university"
+      ],
+      "responses": [
+        "We provide the following courses: Computer Science Engineering, Maths and computing Engineering, Electrical Engineering, and Civil Engineering."
+      ]
+    },
+    {
+      "tag": "hod_info",
+      "patterns": [
+        "Who is the HOD?",
+        "Head of department name",
+        "Who is the head of Computer Science?",
+        "Tell me the HOD of Civil Engineering",
+        "Department heads"
+      ],
+      "responses": [
+        "The Heads of Departments are: Prof. Frank Rosenblat (Computer Science Engineering), Prof. Sanjeevan (Maths and computing Engineering), Prof. James Rodriguez (Electrical Engineering), and Prof. Toni Rudiger (Civil Engineering)."
+      ]
+    },
+    {
+      "tag": "course_fees",
+      "patterns": [
+        "What is the fee structure?",
+        "How much does it cost?",
+        "Fees for Computer Science",
+        "What are the yearly fees?",
+        "Tuition fees"
+      ],
+      "responses": [
+        "The fees per year are: Computer Science Engineering = 70,000/year, Maths and computing Engineering = 75,000/year, Electrical Engineering = 68,000/year, and Civil Engineering = 65,000/year."
+      ]
+    },
+    {
+      "tag": "contact_emails",
+      "patterns": [
+        "How can I contact the university?",
+        "Email address of HOD",
+        "Administration email",
+        "Contact details",
+        "How to reach the administration"
+      ],
+      "responses": [
+        "You can reach out via email: Computer Science Engineering = Prof. Frank Rosenblat (hodcse@iuk.ac.in), Maths and computing Engineering = Prof. Sanjeevan (hodmce@iuk.ac.in), Electrical Engineering = Prof. James Rodriguez (hodee@iuk.ac.in), Civil Engineering = Prof. Toni Rudiger (hodce@iuk.ac.in), and Administration = Aryan Robben (admin@iuk.ac.in)."
+      ]
+    },
+    {
+      "tag": "reach_by_bus",
+      "patterns": [
+        "How to reach by bus?",
+        "Which bus to take?",
+        "Bus route to campus",
+        "Bus terminal details"
+      ],
+      "responses": [
+        "By Bus: Reach Kastovia Bus Terminal from take no. 87 bus leave at International University of Kastovia Stop."
+      ]
+    },
+    {
+      "tag": "reach_by_air",
+      "patterns": [
+        "How to reach by air?",
+        "Nearest airport",
+        "Flight to university",
+        "How to come by plane?"
+      ],
+      "responses": [
+        "By Air: Reach Kastovia International Airport, take taxi to University or take 212 bus leave at International University of Kastovia Stop."
+      ]
+    },
+    {
+      "tag": "reach_by_train",
+      "patterns": [
+        "How to reach by train?",
+        "Nearest railway station",
+        "Train route",
+        "Which train goes to the university?"
+      ],
+      "responses": [
+        "By Train: Reach Kastovia Railway Junction, take taxi to University or take 87 bus leave at International University of Kastovia Stop."
+      ]
+    }
+  ]
+}

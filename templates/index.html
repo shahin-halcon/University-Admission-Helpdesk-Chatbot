@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Helpdesk</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-container { width: 400px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+        .chat-header { background: #0056b3; color: white; padding: 15px; text-align: center; font-size: 1.2em; font-weight: bold; }
+        .chat-box { height: 400px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #fafafa; }
+        .message { padding: 10px 15px; border-radius: 20px; max-width: 80%; word-wrap: break-word; font-size: 0.95em; }
+        .user-msg { background: #0056b3; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .bot-msg { background: #e9ecef; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .input-area { display: flex; padding: 10px; background: white; border-top: 1px solid #ddd; }
+        input[type="text"] { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-size: 1em; }
+        button { background: #0056b3; color: white; border: none; padding: 10px 20px; margin-left: 10px; border-radius: 20px; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #004494; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">IUK Helpdesk Bot</div>
+    
+    <div class="chat-box" id="chat-box">
+        <div class="message bot-msg">Hello! I am the International University of Kastovia assistant. How can I help you today?</div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Type your question here..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+
+    function appendMessage(sender, text, className) {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `message ${className}`;
+        msgDiv.innerText = text;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (text === "") return;
+
+        // Show user message
+        appendMessage("You", text, "user-msg");
+        userInput.value = "";
+
+        // Send to Flask backend
+        fetch("/get", {
+            method: "POST",
+            body: new URLSearchParams({ "msg": text }),
+            headers: { "Content-Type": "application/x-www-form-urlencoded" }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Show bot response
+            appendMessage("Bot", data.response, "bot-msg");
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+</script>
+
+</body>
+</html>
